@@ -5,6 +5,10 @@
     >
 
     <item
+        android:id="@+id/loginFragment"
+        android:title="Login"/>
+
+    <item
         android:title="Home"
         android:id="@+id/homeFragment"/>
 

@@ -2,11 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/settings"
-        android:title="settings"
-        app:showAsAction="never"
-        />
 
     <item android:id="@+id/logout"
         android:title="logout"
@@ -14,7 +9,7 @@
 
     <item
         android:id="@+id/toolbar_username"
-        android:title="username"
+        android:title=""
         app:showAsAction="always"/>
 
 </menu>

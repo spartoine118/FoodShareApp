@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -37,11 +38,23 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         navigationView = findViewById(R.id.nav_view);
         drawerLayout = findViewById(R.id.drawer_container);
-        appBarConfiguration = new AppBarConfiguration.Builder(R.id.homeFragment, R.id.searchPageFragment,
+        appBarConfiguration = new AppBarConfiguration.Builder(R.id.loginFragment, R.id.homeFragment, R.id.searchPageFragment,
                 R.id.requestFeedFragment, R.id.createPostFragment).setOpenableLayout(drawerLayout).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Menu menuNav = navigationView.getMenu();
+        if(user == null){
+            MenuItem homeItem = menuNav.findItem(R.id.homeFragment);
+            MenuItem createPostItem = menuNav.findItem(R.id.createPostFragment);
+            MenuItem feedItem = menuNav.findItem(R.id.requestFeedFragment);
+            MenuItem searchItem = menuNav.findItem(R.id.searchPageFragment);
+            homeItem.setVisible(false);
+            createPostItem.setVisible(false);
+            feedItem.setVisible(false);
+            searchItem.setVisible(false);
+        }
         if(user != null){
+            menuNav.findItem(R.id.loginFragment).setVisible(false);
             navController.navigate(R.id.homeFragment);
         }
 
@@ -70,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
             MenuItem menuItem = menu.findItem(R.id.toolbar_username);
             menuItem.setTitle(user.getDisplayName());
         }
+        else{
+            MenuItem menuItem = menu.findItem(R.id.toolbar_username);
+            menuItem.setTitle("");
+        }
         return true;
     }
 
@@ -77,11 +94,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(this, MainActivity.class);
+                this.startActivity(intent);
                 navController.popBackStack(R.id.loginFragment, false);
-
-            case R.id.settings:
-                Log.d("username", user.getDisplayName());
-                Log.d("username", user.getUid());
 
         }
         return(super.onOptionsItemSelected(item));

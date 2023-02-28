@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -90,12 +92,21 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
         super.onViewCreated(view, savedInstanceState);
 
         dataInitialize();
+        EditText searchQuery = (EditText) view.findViewById(R.id.searchpage_searchbar);
+        ImageButton button = (ImageButton) view.findViewById(R.id.searchpage_serachButton);
+
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         ItemListAdapter itemListAdapter = new ItemListAdapter(getContext(), itemArrayList, this);
         recyclerView.setAdapter(itemListAdapter);
         itemListAdapter.notifyDataSetChanged();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {

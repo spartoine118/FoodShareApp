@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,7 +41,10 @@ public class ItemDetailFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private Map<String, Object> data = new HashMap<>();
+    public String posterID;
+    private String postID;
 
     public ItemDetailFragment() {
         // Required empty public constructor
@@ -87,6 +92,8 @@ public class ItemDetailFragment extends Fragment {
                 TextView availableDate = view.findViewById(R.id.itemdetail_availabletill);
                 TextView description = view.findViewById(R.id.itemdetail_description);
                 TextView usernamme = view.findViewById(R.id.itemdetail_username);
+                Button deleteButton = view.findViewById(R.id.itemdetail_delete);
+
 
 
                 DocumentReference docRef = db.collection("foodposts").document(result.getString("postID"));
@@ -102,6 +109,13 @@ public class ItemDetailFragment extends Fragment {
                                 description.setText(data.get("details").toString());
                                 postDate.setText(data.get("createdate").toString());
                                 availableDate.setText(data.get("availabletill").toString());
+                                if(user.getUid().equalsIgnoreCase(data.get("posterID").toString())){
+                                    deleteButton.setVisibility(View.VISIBLE);
+                                }
+                                else{
+                                    deleteButton.setVisibility(View.INVISIBLE);
+                                }
+                                postID = data.get("postID").toString();
 
                             } else {
                                 Log.d("error", "No such document");
@@ -112,6 +126,7 @@ public class ItemDetailFragment extends Fragment {
                     }
                 });
 
+
                 sendRequestButton = (Button) view.findViewById(R.id.itemdetaiL_button);
                 sendRequestButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -121,6 +136,19 @@ public class ItemDetailFragment extends Fragment {
                         //transaction.replace(R.id.fragmentContainerView, new ItemDetailFragment());
                         //transaction.addToBackStack(null);
                         Navigation.findNavController(view).navigate(R.id.action_itemDetailFragment_to_requestFragment);
+                        transaction.commit();
+                    }
+                });
+
+                deleteButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        db.collection("foodposts").document(postID)
+                                .delete();
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        //transaction.replace(R.id.fragmentContainerView, new ItemDetailFragment());
+                        //transaction.addToBackStack(null);
+                        Navigation.findNavController(view).navigate(R.id.action_itemDetailFragment_to_homeFragment);
                         transaction.commit();
                     }
                 });

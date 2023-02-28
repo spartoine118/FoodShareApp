@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +19,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.google.firestore.v1.WriteResult;
 
 import org.w3c.dom.Text;
 
@@ -41,7 +45,9 @@ public class RequestFeedDetailFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private String requestID;
+    private String postID;
+    private int requestQuantityInt;
+    private int postQuantity;
 
     public RequestFeedDetailFragment() {
         // Required empty public constructor
@@ -104,7 +110,8 @@ public class RequestFeedDetailFragment extends Fragment {
                                 requestDate.setText(document.getData().get("createDate").toString());
                                 requestPickupDate.setText(document.getData().get("pickupDate").toString());
                                 requestDetails.setText(document.getData().get("detail").toString());
-                                requestID = document.getData().get("requestID").toString();
+                                postID = document.getData().get("postID").toString();
+                                requestQuantityInt = Integer.parseInt(requestQuantity.getText().toString());
 
                             } else {
                                 Log.d("error", "No such document");
@@ -121,8 +128,13 @@ public class RequestFeedDetailFragment extends Fragment {
                     public void onClick(View v) {
                         Map<String, Object> data = new HashMap<>();
                         data.put("approveStatus", true);
-                        db.collection("requests").document(result.getString("requestID"))
-                                .set(data, SetOptions.merge());
+                        DocumentReference requestRef = db.collection("requests").document(result.getString("requestID"));
+                        requestRef.update("approveStatus", true);
+                        DocumentReference postRef = db.collection("foodposts").document(postID);
+                        postRef.update("quantity", FieldValue.increment(-requestQuantityInt));
+                        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                        Navigation.findNavController(view).navigate(R.id.action_requestFeedDetailFragment_to_requestFeedFragment);
+                        transaction.commit();
                     }
                 });
 
