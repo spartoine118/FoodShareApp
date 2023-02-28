@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <item
+        android:title="Home"
+        android:id="@+id/homeFragment"/>
+
+    <item
+        android:title="Search"
+        android:id="@+id/searchPageFragment"/>
+
+    <item
+        android:title="Request Feed"
+        android:id="@+id/requestFeedFragment"/>
+
+    <item
+        android:title="Create Post"
+        android:id="@+id/createPostFragment"/>
+
+
+</menu>

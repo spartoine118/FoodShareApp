@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RequestFeedDetailFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/requestfeed_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#F5F5DC">
+
+
+        <ImageView
+            android:id="@+id/requestfeed_itempicture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/depositphotos_80565140_stock_illustration_box_vector_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/requestfeed_itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Item Name"
+            app:layout_constraintStart_toStartOf="@id/requestfeed_detail"
+            app:layout_constraintTop_toBottomOf="@+id/requestfeed_itempicture" />
+
+        <TextView
+            android:id="@+id/requestfeed_itempickup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Till: "
+            app:layout_constraintStart_toStartOf="@id/requestfeed_detail"
+            app:layout_constraintTop_toBottomOf="@id/requestfeed_itemname"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/requestfeed_quantity"
+            android:text="Item Quantity"
+            app:layout_constraintTop_toBottomOf="@id/requestfeed_itempickup"
+            app:layout_constraintStart_toStartOf="@id/requestfeed_detail"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/requestfeed_location"
+            android:text="Item Location"
+            app:layout_constraintTop_toBottomOf="@id/requestfeed_quantity"
+            app:layout_constraintStart_toStartOf="@id/requestfeed_detail"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_detail"
+            app:layout_constraintTop_toBottomOf="@id/requestfeed_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="details"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/requestfeed_date"
+            app:layout_constraintBottom_toBottomOf="@id/requestfeed_detail"
+            app:layout_constraintEnd_toEndOf="@id/requestfeed_detail"
+            android:layout_margin="10dp"
+            android:text="date"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/requestfeed_requester"
+            app:layout_constraintEnd_toStartOf="@id/requestfeed_date"
+            app:layout_constraintBottom_toBottomOf="@id/requestfeed_detail"
+            android:text="username"
+            android:layout_margin="10dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/requestfeed_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="approve request"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

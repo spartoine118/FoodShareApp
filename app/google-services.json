@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "283865292676",
+    "project_id": "robust-helix-365608",
+    "storage_bucket": "robust-helix-365608.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283865292676:android:67f4919589dcf8de4347d1",
+        "android_client_info": {
+          "package_name": "com.example.foodshareapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283865292676-tdbbavttnrumcbkrpragtojj40hnh5at.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXflvtrE4K9yosJHYsajXw0f30_u_Ec8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283865292676-emssshl5fsb4fps5lf1h6s302rd6m8lo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283865292676:android:083b07d373b3abee4347d1",
+        "android_client_info": {
+          "package_name": "com.example.fromthestart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283865292676-tdbbavttnrumcbkrpragtojj40hnh5at.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXflvtrE4K9yosJHYsajXw0f30_u_Ec8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283865292676-emssshl5fsb4fps5lf1h6s302rd6m8lo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

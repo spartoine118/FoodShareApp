@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".RequestFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/request_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#F5F5DC">
+
+
+        <ImageView
+            android:id="@+id/request_itempicture"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/depositphotos_80565140_stock_illustration_box_vector_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/request_itemname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Item Name"
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            app:layout_constraintTop_toBottomOf="@+id/request_itempicture" />
+
+        <TextView
+            android:id="@+id/request_itemdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="item date"
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            app:layout_constraintTop_toBottomOf="@id/request_itemname" />
+
+        <TextView
+            android:id="@+id/request_itemavailability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Available Till: "
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            app:layout_constraintTop_toBottomOf="@id/request_itemdate"
+            android:layout_margin="10dp"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_quantity"
+            android:text="Item Quantity"
+            app:layout_constraintTop_toBottomOf="@id/request_itemavailability"
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            android:layout_margin="10dp"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_location"
+            android:text="Item Location"
+            app:layout_constraintTop_toBottomOf="@id/request_quantity"
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/request_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:text="username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_createdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="date"/>
+
+        <TextView
+            android:id="@+id/request_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="150dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toTopOf="@+id/request_createdate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/request_itemname"
+            app:layout_constraintTop_toBottomOf="@+id/request_username" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/request_input"
+        app:layout_constraintTop_toBottomOf="@id/request_detail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#F5F5DC"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/request_inputquantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Quantity:"
+            app:layout_constraintStart_toStartOf="@id/request_input"
+            app:layout_constraintTop_toTopOf="@id/request_input" />
+
+        <EditText
+            android:id="@+id/request_inputquantityuser"
+            android:inputType="number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Choose amount"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/request_inputquantity"
+            app:layout_constraintStart_toEndOf="@id/request_inputquantity"
+            app:layout_constraintTop_toTopOf="@id/request_input" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_inputdate"
+            android:text="Set date..."
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/request_inputquantity"
+            app:layout_constraintStart_toStartOf="@id/request_input"
+            android:layout_margin="10dp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_inputcomment"
+            android:text="Personal request:"
+            app:layout_constraintTop_toBottomOf="@id/request_inputdate"
+            app:layout_constraintStart_toStartOf="@id/request_input"
+            android:layout_margin="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/request_inputcommentuser"
+            app:layout_constraintStart_toStartOf="@id/request_input"
+            app:layout_constraintTop_toBottomOf="@id/request_inputcomment"
+            app:layout_constraintBottom_toBottomOf="@id/request_input"
+            android:inputType="textMultiLine"
+            android:hint="write a request"
+            android:textSize="10sp"
+            android:layout_margin="10dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/request_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send request"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
