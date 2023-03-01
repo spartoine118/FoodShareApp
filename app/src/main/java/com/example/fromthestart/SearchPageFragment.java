@@ -81,6 +81,7 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -88,6 +89,8 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searchpage, container, false);
+
+        ((MainActivity) getActivity()).setActionBarTitle("Search Page");
         Spinner typeSpinner = (Spinner) view.findViewById(R.id.searchpage_typespinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.foodtype_array, android.R.layout.simple_spinner_item);

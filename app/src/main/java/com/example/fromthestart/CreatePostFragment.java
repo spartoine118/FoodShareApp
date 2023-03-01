@@ -84,6 +84,7 @@ public class CreatePostFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -91,6 +92,7 @@ public class CreatePostFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_create_post, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Create Post");
 
         Button createpostbutton = (Button) view.findViewById(R.id.createpost_button);
         TextView setDatetext = (TextView) view.findViewById(R.id.createpost_setdate);

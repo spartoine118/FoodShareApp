@@ -78,6 +78,7 @@ public class RequestFeedDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -85,6 +86,7 @@ public class RequestFeedDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_request_feed_detail, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Request Detail");
         getParentFragmentManager().setFragmentResultListener("itemData", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {

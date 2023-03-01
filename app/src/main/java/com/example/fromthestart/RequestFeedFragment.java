@@ -79,6 +79,7 @@ public class RequestFeedFragment extends Fragment implements RequestSelectListen
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -86,6 +87,7 @@ public class RequestFeedFragment extends Fragment implements RequestSelectListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_request_feed, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Request Feed");
         return view;
     }
 

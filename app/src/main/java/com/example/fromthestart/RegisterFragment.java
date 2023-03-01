@@ -68,6 +68,7 @@ public class RegisterFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -75,6 +76,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Register");
         Button registerbutton = (Button) view.findViewById(R.id.register_registerbutton);
         EditText email = (EditText) view.findViewById(R.id.register_email);
         EditText password = (EditText) view.findViewById(R.id.register_password);

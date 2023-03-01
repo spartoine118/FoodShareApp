@@ -75,6 +75,7 @@ public class ItemDetailFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -82,6 +83,7 @@ public class ItemDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_item_detail, container, false);
+        ((MainActivity) getActivity()).setActionBarTitle("Post Details");
 
         getParentFragmentManager().setFragmentResultListener("itemData", this, new FragmentResultListener() {
             @Override
