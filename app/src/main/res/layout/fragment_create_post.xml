@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/hungry_request"
     tools:context=".CreatePostFragment">
 
     <Button
@@ -12,10 +13,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="282dp"
-        android:layout_marginBottom="10dp"
-        android:text="Button"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/black"
+        android:text="Post"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -39,25 +43,25 @@
         android:id="@+id/createpost_setdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginBottom="44dp"
         android:text="Set Date..."
         android:textColor="@color/black"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/createpost_button"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="581dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
-        android:layout_marginBottom="10dp"
         android:layout_width="281dp"
         android:layout_height="100dp"
         android:layout_marginEnd="50dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/textView2_date"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -65,8 +69,8 @@
         android:id="@+id/textView_details"
         android:layout_width="56dp"
         android:layout_height="22dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="38dp"
+        android:layout_marginBottom="10dp"
         android:text="Details :"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,11 +80,11 @@
         android:id="@+id/textView2_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
         android:text="Available Until:"
-        android:layout_marginStart="38dp"
-        app:layout_constraintBottom_toTopOf="@+id/createpost_setdate"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextMultiLine"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -111,9 +115,9 @@
         android:layout_height="36dp"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="269dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:inputType="number"
-        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_details"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,8 +129,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
         android:layout_marginEnd="319dp"
-        android:text="Quantity:"
         android:layout_marginBottom="10dp"
+        android:text="Quantity:"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -135,29 +139,31 @@
         android:id="@+id/createpost_titletext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="8dp"
         android:text="Post Title"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/createpost_titleedittext"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:id="@+id/createpost_titleedittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/createpost_titleedittext"
-        android:hint="Post name"
         android:layout_marginStart="38dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"/>
+        android:hint="Post name"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/createpost_typespinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginStart="38dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/hungry_request"
     tools:context=".RequestFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/request_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_width="351dp"
+        android:layout_height="252dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="32dp"
+        android:background="#7ED857"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#F5F5DC">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
@@ -31,6 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Item Name"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_detail"
             app:layout_constraintTop_toBottomOf="@+id/request_itempicture" />
 
@@ -40,6 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="item date"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_detail"
             app:layout_constraintTop_toBottomOf="@id/request_itemname" />
 
@@ -47,28 +57,37 @@
             android:id="@+id/request_itemavailability"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:text="Available Till: "
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_detail"
-            app:layout_constraintTop_toBottomOf="@id/request_itemdate"
-            android:layout_margin="10dp"/>
-        
+            app:layout_constraintTop_toBottomOf="@id/request_itemdate" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/request_quantity"
-            android:text="Item Quantity"
-            app:layout_constraintTop_toBottomOf="@id/request_itemavailability"
-            app:layout_constraintStart_toStartOf="@id/request_detail"
-            android:layout_margin="10dp"/>
-        
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/request_location"
-            android:text="Item Location"
-            app:layout_constraintTop_toBottomOf="@id/request_quantity"
+            android:layout_margin="10dp"
+            android:text="Item Quantity"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_detail"
-            android:layout_margin="10dp"/>
+            app:layout_constraintTop_toBottomOf="@id/request_itemavailability" />
+
+        <TextView
+            android:id="@+id/request_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Item Location"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/request_detail"
+            app:layout_constraintTop_toBottomOf="@id/request_quantity" />
 
         <TextView
             android:id="@+id/request_username"
@@ -77,27 +96,36 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
             android:text="username"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/request_createdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/request_createdate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="5dp"
-            android:text="date"/>
+            android:text="date"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/request_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxWidth="150dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
+            android:maxWidth="150dp"
             android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/request_createdate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/request_itemname"
@@ -107,13 +135,18 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/request_input"
-        app:layout_constraintTop_toBottomOf="@id/request_detail"
+        android:layout_width="349dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="32dp"
+        android:background="#7ED857"
+        app:layout_constraintBottom_toTopOf="@+id/request_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="#F5F5DC"
-        android:layout_margin="20dp">
+        app:layout_constraintTop_toBottomOf="@id/request_detail">
 
         <TextView
             android:id="@+id/request_inputquantity"
@@ -121,52 +154,69 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="Quantity:"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_input"
             app:layout_constraintTop_toTopOf="@id/request_input" />
 
         <EditText
             android:id="@+id/request_inputquantityuser"
-            android:inputType="number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:layout_marginStart="16dp"
             android:hint="Choose amount"
-            android:textSize="10sp"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/request_inputquantity"
             app:layout_constraintStart_toEndOf="@id/request_inputquantity"
-            app:layout_constraintTop_toTopOf="@id/request_input" />
-        
+            app:layout_constraintTop_toTopOf="@id/request_input"
+            app:layout_constraintVertical_bias="0.0" />
+
         <TextView
+            android:id="@+id/request_inputdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/request_inputdate"
+            android:layout_margin="10dp"
             android:text="Set date..."
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@id/request_inputquantity"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_input"
-            android:layout_margin="10dp"/>
+            app:layout_constraintTop_toBottomOf="@id/request_inputquantity" />
 
 
         <TextView
+            android:id="@+id/request_inputcomment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/request_inputcomment"
+            android:layout_margin="10dp"
             android:text="Personal request:"
-            app:layout_constraintTop_toBottomOf="@id/request_inputdate"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/request_input"
-            android:layout_margin="10dp"/>
+            app:layout_constraintTop_toBottomOf="@id/request_inputdate" />
 
         <EditText
+            android:id="@+id/request_inputcommentuser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/request_inputcommentuser"
-            app:layout_constraintStart_toStartOf="@id/request_input"
-            app:layout_constraintTop_toBottomOf="@id/request_inputcomment"
-            app:layout_constraintBottom_toBottomOf="@id/request_input"
-            android:inputType="textMultiLine"
+            android:layout_margin="10dp"
             android:hint="write a request"
-            android:textSize="10sp"
-            android:layout_margin="10dp"/>
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/request_input"
+            app:layout_constraintStart_toStartOf="@id/request_input"
+            app:layout_constraintTop_toBottomOf="@id/request_inputcomment" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -175,9 +225,27 @@
         android:id="@+id/request_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/black"
         android:text="send request"
-        android:layout_marginEnd="10dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request_input"
+        app:layout_constraintVertical_bias="0.483" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Your Request"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="104dp"
+        tools:layout_editor_absoluteY="78dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

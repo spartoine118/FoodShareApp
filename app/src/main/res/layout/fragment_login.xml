@@ -11,11 +11,10 @@
         android:id="@+id/signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="100dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="100dp"
         android:gravity="center"
         android:text="Sign In"
         android:textColor="@color/white"
@@ -23,42 +22,51 @@
         android:textStyle="bold" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/username"
-        android:layout_below="@+id/signin"
-        android:hint="Username"
-        android:background="#30ffffff"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="8dp"
-        android:padding="20dp"
-        android:drawablePadding="15dp"
-        />
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/signin"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#30ffffff"
+        android:drawablePadding="15dp"
+        android:hint="Username"
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
+    <EditText
         android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/username"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#30ffffff"
+        android:drawablePadding="15dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:background="#30ffffff"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:layout_margin="8dp"
         android:padding="20dp"
-        android:drawablePadding="15dp"
-        />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
+
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginbtn"
         android:layout_below="@+id/password"
-        android:text="LOGIN"
-        android:backgroundTint="@color/black"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/black"
+        android:text="LOGIN"
+        android:textColor="@color/white" />
     <!--    <TextView-->
     <!--        android:layout_width="wrap_content"-->
     <!--        android:layout_height="wrap_content"-->
@@ -71,46 +79,38 @@
     <!--        />-->
 
     <LinearLayout
-        android:layout_below="@+id/loginbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_below="@+id/loginbtn"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:layout_margin="10dp">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
             android:text="Don't have an account?"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black" />
+
         <TextView
-            android:layout_marginStart="5dp"
             android:id="@+id/register_now"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:background="#0E0B0A"
             android:text="Register Now"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/other_options"
-        android:layout_above="@+id/social_icons"
-        android:text="or sign in with "
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        />
-
 
     <LinearLayout
+        android:id="@+id/social_icons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/social_icons"
         android:layout_alignParentBottom="true"
         android:gravity="center"
 
@@ -118,35 +118,38 @@
 
 
         <ImageView
+            android:id="@+id/signin_withfacebook"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
-            android:src="@drawable/facebook1"
-            android:id="@+id/signin_withfacebook"
-            />
+            android:src="@drawable/facebook1" />
+
         <ImageView
+            android:id="@+id/signin_withgoogle"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
             android:src="@drawable/google"
-            android:id="@+id/signin_withgoogle"
 
             />
+
         <ImageView
+            android:id="@+id/signin_withtwitter"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="20dp"
-            android:id="@+id/signin_withtwitter"
-            android:src="@drawable/twitter"
-            />
+            android:src="@drawable/twitter" />
+
+        <TextView
+            android:id="@+id/other_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="or sign in with "
+            android:textColor="@color/white" />
 
 
     </LinearLayout>
-
-
-
-
-
 
 
 </RelativeLayout>
