@@ -47,7 +47,6 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
     private String mParam1;
     private String mParam2;
     private ArrayList<FoodPost> itemArrayList;
-    private String[] itemHeading;
     private RecyclerView recyclerView;
     private ItemListAdapter itemListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
