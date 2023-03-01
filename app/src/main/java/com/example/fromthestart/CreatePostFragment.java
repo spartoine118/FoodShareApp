@@ -9,8 +9,10 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
@@ -29,7 +31,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -54,6 +59,8 @@ public class CreatePostFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Date availableDate;
+    private String postID;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     public CreatePostFragment() {
         // Required empty public constructor
@@ -117,23 +124,30 @@ public class CreatePostFragment extends Fragment {
                 }
                 else{
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                     FoodPost foodPost = new FoodPost(title.getText().toString(), address.getText().toString(), typeSpinner.getSelectedItem().toString(), Integer.parseInt(quantity.getText().toString()), details.getText().toString(),
                             availableDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(),
                             LocalDate.now().toString(), user.getUid());
-                    db.collection("foodposts").add(foodPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    db.collection("foodposts").add(foodPost).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("postID", documentReference.getId());
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            Map<String, String> data = new HashMap<>();
+                            data.put("postID", task.getResult().getId());
                             data.put("posterUsername", user.getDisplayName());
-                            db.collection("foodposts").document(documentReference.getId()).set(data, SetOptions.merge());
+                            db.collection("foodposts").document(task.getResult().getId()).set(data, SetOptions.merge());
+
                         }
                     });
-                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                    Navigation.findNavController(view).navigate(R.id.action_createPostFragment_to_homeFragment);
-                    transaction.commit();
+                    try {
+                        Thread.sleep(1000);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        getActivity().startActivity(intent);
+                        Navigation.findNavController(view).navigate(R.id.action_createPostFragment_to_homeFragment);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         });
@@ -160,6 +174,7 @@ public class CreatePostFragment extends Fragment {
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+
             }
         });
 

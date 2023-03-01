@@ -108,6 +108,7 @@ public class HomeFragment extends Fragment implements ItemSelectListener{
             public void run() {
                 getActivity().findViewById(R.id.recyclerview).invalidate();
                 getActivity().findViewById(R.id.recyclerview).requestLayout();
+                itemListAdapter.notifyDataSetChanged();
             }
         },1500);
     }

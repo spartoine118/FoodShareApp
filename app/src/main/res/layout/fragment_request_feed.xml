@@ -11,9 +11,10 @@
     <!-- TODO: Update blank fragment layout -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/requestfeed_recyclerview"
-        android:layout_width="353dp"
-        android:layout_height="496dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginTop="204dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

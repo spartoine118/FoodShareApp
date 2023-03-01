@@ -1,5 +1,6 @@
 package com.example.fromthestart;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -96,7 +98,6 @@ public class RequestFeedDetailFragment extends Fragment {
                 TextView requestPoster = (TextView) view.findViewById(R.id.requestfeed_requester);
                 TextView requestDate = (TextView) view.findViewById(R.id.requestfeed_date);
                 TextView requestPickupDate = (TextView) view.findViewById(R.id.requestfeed_itempickup);
-                TextView requestLocation = (TextView) view.findViewById(R.id.requestfeed_location);
                 TextView requestDetails = (TextView) view.findViewById(R.id.request_detail);
 
                 DocumentReference docRef = db.collection("requests").document(result.getString("requestID"));
@@ -123,6 +124,8 @@ public class RequestFeedDetailFragment extends Fragment {
                         }
                     }
                 });
+
+
 
                 Button approveButton = (Button) view.findViewById(R.id.requestfeed_button);
                 approveButton.setOnClickListener(new View.OnClickListener() {

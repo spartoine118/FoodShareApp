@@ -206,7 +206,11 @@ public class RequestFragment extends Fragment {
                             db.collection("requests").document(documentReference.getId()).set(data, SetOptions.merge());
                         }
                     });
-
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
 
                     FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
                     Navigation.findNavController(view).navigate(R.id.action_requestFragment_to_homeFragment);

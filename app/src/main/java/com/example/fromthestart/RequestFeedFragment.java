@@ -87,7 +87,7 @@ public class RequestFeedFragment extends Fragment implements RequestSelectListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_request_feed, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle("Request Feed");
+       ((MainActivity) getActivity()).setActionBarTitle("Request Feed");
         return view;
     }
 
@@ -117,7 +117,7 @@ public class RequestFeedFragment extends Fragment implements RequestSelectListen
 
         itemArrayList = new ArrayList<>();
 
-        db.collection("requests").whereEqualTo("posterID", user.getUid()).orderBy("createDate", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("requests").whereEqualTo("posterID", user.getUid()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
