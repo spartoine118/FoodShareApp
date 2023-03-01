@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +25,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,7 +72,6 @@ public class LoginFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -84,6 +84,7 @@ public class LoginFragment extends Fragment {
         final MaterialButton login_button = (MaterialButton) view.findViewById(R.id.loginbtn);
         final TextView register = (TextView) view.findViewById(R.id.register_now);
         final ImageView login_google = (ImageView) view.findViewById(R.id.signin_withgoogle);
+        ImageView login_facebook = (ImageView) view.findViewById(R.id.signin_withfacebook);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,8 +124,11 @@ public class LoginFragment extends Fragment {
         login_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
+
             }
         });
+
+
 
         return view;
     }

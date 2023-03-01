@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,8 +31,10 @@ import com.google.firebase.firestore.SetOptions;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,6 +57,7 @@ public class RequestFragment extends Fragment {
     private String mParam2;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Date availableDateInput;
+    private LocalDate deadLine;
     private String postID;
     private TextView username;
     private TextView itemQuantity;
@@ -109,6 +113,7 @@ public class RequestFragment extends Fragment {
                 TextView itemLocation = view.findViewById(R.id.request_location);
                 TextView postDate = view.findViewById(R.id.request_createdate);
                 TextView descritpion = view.findViewById(R.id.request_description);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 
                 DocumentReference docRef = db.collection("foodposts").document(result.getString("postID"));
@@ -129,7 +134,7 @@ public class RequestFragment extends Fragment {
                                 postID = document.getData().get("postID").toString();
                                 posterID = document.getData().get("posterID").toString();
                                 titleName = document.getData().get("postTitle").toString();
-
+                                deadLine = LocalDate.parse(document.getData().get("availabletill").toString(), formatter);
                             } else {
                                 Log.d("error", "No such document");
                             }
@@ -176,26 +181,36 @@ public class RequestFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                RequestModel request = new RequestModel(user.getUid(), user.getDisplayName(),username.getText().toString(), postID, Integer.parseInt(inputQuantity.getText().toString()),
-                        inputRequest.getText().toString(), availableDateInput.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(), LocalDate.now().toString(),
-                        titleName);
+                if(inputQuantity.getText().toString().isEmpty() || setDate.getText().toString().equalsIgnoreCase("Set date...")){
+                    Toast.makeText(view.getContext(), "Please choose a quantity or set the date", Toast.LENGTH_SHORT).show();
+                }
+                else if (availableDateInput.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isAfter(deadLine)){
+                    Toast.makeText(view.getContext(), "Please choose a valid date", Toast.LENGTH_SHORT).show();
+                }
+                else{
 
-                db.collection("requests").add(request).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Map<String, Object> data = new HashMap<>();
-                        data.put("requestID", documentReference.getId());
-                        data.put("posterID", posterID);
-                        data.put("postName", titleName);
-                        db.collection("requests").document(documentReference.getId()).set(data, SetOptions.merge());
-                    }
-                });
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    RequestModel request = new RequestModel(user.getUid(), user.getDisplayName(),username.getText().toString(), postID, Integer.parseInt(inputQuantity.getText().toString()),
+                            inputRequest.getText().toString(), availableDateInput.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(), LocalDate.now().toString(),
+                            titleName);
+
+                    db.collection("requests").add(request).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("requestID", documentReference.getId());
+                            data.put("posterID", posterID);
+                            data.put("postName", titleName);
+                            db.collection("requests").document(documentReference.getId()).set(data, SetOptions.merge());
+                        }
+                    });
 
 
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                Navigation.findNavController(view).navigate(R.id.action_requestFragment_to_homeFragment);
-                transaction.commit();
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    Navigation.findNavController(view).navigate(R.id.action_requestFragment_to_homeFragment);
+                    transaction.commit();
+
+                }
             }
         });
 

@@ -3,4 +3,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="webserverid">283865292676-tdbbavttnrumcbkrpragtojj40hnh5at.apps.googleusercontent.com</string>
+    <string-array name="foodtype_array">
+        <item>Meat</item>
+        <item>Vegan</item>
+        <item>Vegatarian</item>
+        <item>Legume</item>
+        <item>Fruit</item>
+        <item>Drink</item>
+        <item>Snack</item>
+        <item>Fast Food</item>
+    </string-array>
 </resources>

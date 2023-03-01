@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="163dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Enter Address"
         android:inputType="textPostalAddress"
@@ -98,10 +98,10 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type:"
         android:layout_marginStart="38dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        android:text="Type:"
+        app:layout_constraintBottom_toTopOf="@+id/createpost_typespinner"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -115,21 +115,6 @@
         android:inputType="number"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
@@ -167,6 +152,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/textView3"/>
 
+    <Spinner
+        android:id="@+id/createpost_typespinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,8 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +49,7 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
     private ArrayList<FoodPost> itemArrayList;
     private String[] itemHeading;
     private RecyclerView recyclerView;
+    private ItemListAdapter itemListAdapter;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public SearchPageFragment() {
@@ -84,6 +88,36 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searchpage, container, false);
+        Spinner typeSpinner = (Spinner) view.findViewById(R.id.searchpage_typespinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.foodtype_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(adapter);
+        Button filterButton = (Button) view.findViewById(R.id.searchpage_filterbutton);
+        filterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                db.collection("foodposts").whereEqualTo("foodttype", typeSpinner.getSelectedItem().toString()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            itemArrayList.clear();
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> map = document.getData();
+                                FoodPost foodPost = new FoodPost(map.get("postTitle").toString(), map.get("location").toString(), map.get("foodttype").toString(),
+                                        Integer.parseInt(map.get("quantity").toString()), map.get("details").toString(),
+                                        map.get("createdate").toString(), map.get("availabletill").toString(), map.get("posterID").toString(), map.get("posterUsername").toString());
+                                foodPost.setPostID(map.get("postID").toString());
+                                itemArrayList.add(foodPost);
+                            }
+                            itemListAdapter.notifyDataSetChanged();
+                        } else {
+                            Log.d("ERROR", task.getException().toString());
+                        }
+                    }
+                });
+            }
+        });
         return view;
     }
 
@@ -92,21 +126,13 @@ public class SearchPageFragment extends Fragment implements ItemSelectListener{
         super.onViewCreated(view, savedInstanceState);
 
         dataInitialize();
-        EditText searchQuery = (EditText) view.findViewById(R.id.searchpage_searchbar);
-        ImageButton button = (ImageButton) view.findViewById(R.id.searchpage_serachButton);
 
         recyclerView = view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        ItemListAdapter itemListAdapter = new ItemListAdapter(getContext(), itemArrayList, this);
+        itemListAdapter = new ItemListAdapter(getContext(), itemArrayList, this);
         recyclerView.setAdapter(itemListAdapter);
         itemListAdapter.notifyDataSetChanged();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {

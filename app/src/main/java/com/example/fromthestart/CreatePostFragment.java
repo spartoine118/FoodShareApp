@@ -21,10 +21,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,32 +95,44 @@ public class CreatePostFragment extends Fragment {
         Button createpostbutton = (Button) view.findViewById(R.id.createpost_button);
         TextView setDatetext = (TextView) view.findViewById(R.id.createpost_setdate);
         EditText address = (EditText) view.findViewById(R.id.editTextTextPostalAddress);
-        EditText foodType = (EditText) view.findViewById(R.id.editTextTextPersonName2);
         EditText quantity = (EditText) view.findViewById(R.id.editTextNumber);
         EditText details = (EditText) view.findViewById(R.id.editTextTextMultiLine);
         EditText title = (EditText) view.findViewById(R.id.createpost_titleedittext);
+        Spinner typeSpinner = (Spinner) view.findViewById(R.id.createpost_typespinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.foodtype_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(adapter);
 
         createpostbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                FoodPost foodPost = new FoodPost(title.getText().toString(), address.getText().toString(), foodType.getText().toString(), Integer.parseInt(quantity.getText().toString()), details.getText().toString(),
-                        availableDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(),
-                        LocalDate.now().toString(), user.getUid());
-                db.collection("foodposts").add(foodPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Map<String, Object> data = new HashMap<>();
-                        data.put("postID", documentReference.getId());
-                        data.put("posterUsername", user.getDisplayName());
-                        db.collection("foodposts").document(documentReference.getId()).set(data, SetOptions.merge());
-                    }
-                });
-                FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-                Navigation.findNavController(view).navigate(R.id.action_createPostFragment_to_homeFragment);
-                transaction.commit();
+                if(address.getText().toString().isEmpty() || quantity.getText().toString().isEmpty() || title.getText().toString().isEmpty() || setDatetext.getText().toString().equalsIgnoreCase("Set Date...")){
+                    Toast.makeText(view.getContext(), "Fill out all the forms and set the date", Toast.LENGTH_SHORT).show();
+                }
+                else if (availableDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().isBefore(LocalDate.now())){
+                    Toast.makeText(view.getContext(), "Please choose a valid date", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    FoodPost foodPost = new FoodPost(title.getText().toString(), address.getText().toString(), typeSpinner.getSelectedItem().toString(), Integer.parseInt(quantity.getText().toString()), details.getText().toString(),
+                            availableDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().toString(),
+                            LocalDate.now().toString(), user.getUid());
+                    db.collection("foodposts").add(foodPost).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("postID", documentReference.getId());
+                            data.put("posterUsername", user.getDisplayName());
+                            db.collection("foodposts").document(documentReference.getId()).set(data, SetOptions.merge());
+                        }
+                    });
+                    FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+                    Navigation.findNavController(view).navigate(R.id.action_createPostFragment_to_homeFragment);
+                    transaction.commit();
+                }
             }
         });
 

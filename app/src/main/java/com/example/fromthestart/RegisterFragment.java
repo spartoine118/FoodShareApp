@@ -116,7 +116,7 @@ public class RegisterFragment extends Fragment {
                                 Navigation.findNavController(view).navigate(R.id.action_registerFragment_to_loginFragment);
                             } else {
                                 // If sign in fails, display a message to the user
-                                Toast.makeText(view.getContext(), "Password too weak",
+                                Toast.makeText(view.getContext(), "Password too weak please choose another password",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
