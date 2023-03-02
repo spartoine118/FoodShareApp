@@ -85,8 +85,6 @@ public class LoginFragment extends Fragment {
         final TextView password = (TextView)  view.findViewById(R.id.password);
         final MaterialButton login_button = (MaterialButton) view.findViewById(R.id.loginbtn);
         final TextView register = (TextView) view.findViewById(R.id.register_now);
-        final ImageView login_google = (ImageView) view.findViewById(R.id.signin_withgoogle);
-        ImageView login_facebook = (ImageView) view.findViewById(R.id.signin_withfacebook);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,12 +121,6 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        login_google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-
-            }
-        });
 
 
 
